@@ -25,14 +25,14 @@ angular
  * Dependency injection for CurrencyExchangeController
  * @type {Array}
  */
-CurrencyExchangeController.$inject = ['$scope', 'TransactionLog', '$interval', '$state'];
+CurrencyExchangeController.$inject = ['$scope', 'TransactionLog', '$interval', '$state', '$log'];
 
 /**
  * [$inject description]
  * Dependency injection for NewsController
  * @type {Array}
  */
-NewsController.$inject = ['$scope', 'TransactionLog', 'newsFeedService', '$mdDialog'];
+NewsController.$inject = ['$scope', 'TransactionLog', 'newsFeedService', '$mdDialog', '$log'];
 
 /**
  * [$inject description]
@@ -48,7 +48,7 @@ DialogController.$inject = ['$scope', 'popupFeed', '$mdDialog'];
  * @param {[service]} $interval      [description]
  * @param {[service]} $state         [description]
  */
-function CurrencyExchangeController($scope, TransactionLog, $interval, $state) {
+function CurrencyExchangeController($scope, TransactionLog, $interval, $state, $log) {
 
   $scope.amount = 0;
   $scope.currencyDetail = [{"currencies":"USD / JPY","biddingValue":0,"askingValue":0},{"currencies":"AUD / JPY","biddingValue":0,"askingValue":0},{"currencies":"EUR / GAD","biddingValue":0,"askingValue":0},{"currencies":"USD / CNY","biddingValue":0,"askingValue":0},{"currencies":"CAD / CNY","biddingValue":0,"askingValue":0},{"currencies":"GBP / USD","biddingValue":0,"askingValue":0}];
@@ -146,7 +146,7 @@ function CurrencyExchangeController($scope, TransactionLog, $interval, $state) {
  * @param {[Service]} newsFeedService [description]
  * @param {[Service]} $mdDialog       [description]
  */
-function NewsController ($scope, TransactionLog, newsFeedService, $mdDialog) {
+function NewsController ($scope, TransactionLog, newsFeedService, $mdDialog, $log) {
   $scope.getNewsFeed = function() {
     newsFeedService
       .getNewsFeed()
