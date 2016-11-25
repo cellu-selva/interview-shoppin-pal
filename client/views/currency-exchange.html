@@ -1,0 +1,67 @@
+<div>
+  <div class="col-lg-12" ng-init="getGridData();">
+    <h3 class="col-lg-9 m-0">
+      <span> Currency Exchange </span>
+    </h3>
+    <div class="pull-right col-lg-3">
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label for="inputEmail" class="col-lg-4 control-label">Amount</label>
+            <div class="col-lg-8">
+              <input type="number" class="form-control" id="amount" ng-model="amount" placeholder="amount">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in currencyDetail">
+    <div class="col-lg-4 p-t-10">
+      <div class="col-lg-12 card border-solid-black p-0">
+        <div class="col-lg-12 card-title text-center p-t-5 bg-grey"> {{item.currencies}} </div>
+        <div class="col-lg-12 card-content p-t-30 black-font font-weight-600">
+          <div class="col-lg-offset-1 col-lg-5 sub-card m-0 p-0 border-solid-black">
+            <span class="text-center font-35 font-weight-400 p-l-13"> {{item.biddingValue}}</span>
+            <button class="btn col-lg-12 sub-card-btn border-top-black bg-green text-center p-t-5" ng-click="recordTransaction($event,item,'bid');"> Bid
+            </button>
+          </div>
+          <div class="col-lg-offset-1 col-lg-5 sub-card pull-right m-r-10 p-0 border-solid-black">
+            <span class="text-center font-35 font-weight-400 p-l-13"> {{item.askingValue}}</span>
+            <button class="btn col-lg-12 sub-card-btn border-top-black bg-red text-center p-t-5" ng-click="recordTransaction($event,item,'ask');"> Ask
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <md-card class="grid m-t-10">
+    <md-table-container>
+      <table md-table md-row-select ng-model="selected">
+        <thead md-head md-order="query.order" class="bg-grey">
+          <tr md-row>
+            <th md-column md-order-by="order">Order</th>
+            <th md-column md-numeric md-order-by="currencies">Currencies</th>
+            <th md-column md-numeric md-order-by="amount">Amount</th>
+            <th md-column md-numeric md-order-by="price">Price</th>
+            <th md-column md-order-by="date">Date Time</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-class="item.order === 'Sell' ? 'bg-red' : 'bg-green'" ng-repeat="item in grid.data | limitTo: query.limit : (query.page -1) * query.limit">
+            <td md-cell>{{item.order}}</td>
+            <td md-cell>{{item.currencies}}</td>
+            <td md-cell>{{item.amount}}</td>
+            <td md-cell>{{item.price}}</td>
+            <td md-cell>{{item.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{grid.count}}" md-page-select="true"></md-table-pagination>
+    <!-- <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{grid.data.length}}"></md-table-pagination> -->
+  </md-card>
+</div>

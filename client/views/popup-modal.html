@@ -1,0 +1,31 @@
+<md-dialog aria-label="News Feed">
+  <md-toolbar>
+    <div class="md-toolbar-tools bg-grey black-font">
+      <span flex>{{currentFeed.title}}</span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/ic_clear_black_24dp_1x.png" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <md-list ng-cloak>
+      <md-list-item class="secondary-button-padding">
+        <strong class="popup-label">Published Date</strong>
+        <strong class="popup-value">{{currentFeed.publishedDate}}</strong>
+      </md-list-item>
+      <md-list-item class="secondary-button-padding">
+        <strong class="popup-label">Content</strong>
+        <strong class="popup-value">{{currentFeed.contentSnippet}}</strong>
+      </md-list-item>
+      <md-list-item class="secondary-button-padding">
+        <strong class="popup-label">link</strong>
+        <strong class="popup-value">{{currentFeed.link}}</strong>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="cancel()">
+      close
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
